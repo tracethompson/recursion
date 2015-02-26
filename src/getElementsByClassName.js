@@ -10,15 +10,15 @@ function getElementsByClassName(className){
   var getElementByClassName = function(nodes){
 
   	for (var i = 0; i < nodes.length; i++){
-  		if (nodes[i].classList === undefined){
-  			continue;
-  		} else if (nodes[i].classList.contains(className)){
+  		if (nodes[i].classList !== undefined){
+  			if (nodes[i].classList.contains(className)){
   			result.push(nodes[i]);
-  		}
-  		getElementByClassName(nodes[i].childNodes);
-  	}
-  }
-  var realBody = document.body;
-  getElementByClassName([realBody]);
+  		  }
+  	  }
+    getElementByClassName(nodes[i].childNodes);
+    }
+  }  
+  var body = document.body;
+  getElementByClassName([body]);
   return result;
 };
