@@ -4,7 +4,21 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-){
-  // your code here
+function getElementsByClassName(className){
+  var result = [];
+
+  var getElementByClassName = function(nodes){
+
+  	for (var i = 0; i < nodes.length; i++){
+  		if (nodes[i].classList === undefined){
+  			continue;
+  		} else if (nodes[i].classList.contains(className)){
+  			result.push(nodes[i]);
+  		}
+  		getElementByClassName(nodes[i].childNodes);
+  	}
+  }
+  var realBody = document.body;
+  getElementByClassName([realBody]);
+  return result;
 };
